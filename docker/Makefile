@@ -7,7 +7,6 @@ build:
 
 run:
 	docker run -it \
-		--runtime=nvidia \
 		--name pdf-translator \
 		-v ${PROJECT_DIRECTORY}:/app \
 		--gpus all \
@@ -18,7 +17,6 @@ run:
 
 run-bash:
 	docker run -it \
-		--runtime=nvidia \
 		--name pdf-translator \
 		-v ${PROJECT_DIRECTORY}:/app \
 		--gpus all \

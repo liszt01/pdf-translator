@@ -1,8 +1,7 @@
-FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04
+FROM nvcr.io/nvidia/pytorch:24.04-py3
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PIP_PREFER_BINARY=1 \
-    CUDA_HOME=/usr/local/cuda-11.8 \
     DEBCONF_NOWARNINGS=yes
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
@@ -15,7 +14,6 @@ RUN apt-get update \
         curl \
         git \
         python3-dev \
-        python3-pip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/* /var/tmp/*
@@ -23,10 +21,6 @@ RUN apt-get update \
 WORKDIR /resources
 
 RUN pip install \
-        torch \
-        torchvision \
-        --index-url https://download.pytorch.org/whl/cu118 \
-    && pip install opencv-python-headless \
         networkx \
         transformers==4.30 \
         sentencepiece \
